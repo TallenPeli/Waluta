@@ -1,6 +1,6 @@
-# A Currency Exchange tool written in Python Flet
+# A Currency Exchange tool written in Python
 
-An example of a minimal Flet app.
+A beautiful flutter application written in Python
 
 ### Run the app:
 
