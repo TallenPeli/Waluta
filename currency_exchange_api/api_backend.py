@@ -1,6 +1,6 @@
 import requests
 
-key = "1ea948078024d6c63db9fa5f"
+key = ""
 
 def get_exchange(from_currency_code, to_convert_currency_code):
     
