@@ -4,6 +4,7 @@ import api_backend as api
 def main(page):
 
     def get_currency_conversion(e):
+        api.key = str(api_key_input_field.value)
         converted_value.value=str(round(float(from_amount_text_box.value) * float(api.get_exchange(str(to_currency_dropdown.value), str(from_currency_dropdown.value))), 2))+" "+str(to_currency_dropdown.value)
         page.update()
 
@@ -41,7 +42,6 @@ def main(page):
                     ], 
                 alignment=ft.MainAxisAlignment.START, expand=1
                 ),
-
                 ft.FloatingActionButton(
                     icon=ft.icons.SETTINGS,
                     on_click=lambda e: change_page(2),
@@ -81,7 +81,7 @@ def main(page):
             page.add(
                 ft.Row(
                     [
-                        from_amount_text_box
+                        api_key_input_field
                     ]
                 )
             )
@@ -98,7 +98,7 @@ def main(page):
     def on_nav_change(e):
         change_page(e.control.selected_index)
 
-    page.title = "Currency Converter"
+    page.title = "Kantor"
     page.navigation_bar = ft.NavigationBar(
         destinations=[
             ft.NavigationDestination(icon=ft.icons.WALLET, label="Money"),
@@ -114,6 +114,8 @@ def main(page):
     copy_button = ft.ElevatedButton("Copy", expand=1, on_click=copy_value)
 
     from_amount_text_box = ft.TextField(label="Amount", expand=1)
+
+    api_key_input_field = ft.TextField(label="API key", expand=1)
 
     converted_value = ft.Text(
         value="", 

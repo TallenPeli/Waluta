@@ -7,6 +7,7 @@ def get_exchange(from_currency_code, to_convert_currency_code):
     print("Calling API...")
 
     url = "https://v6.exchangerate-api.com/v6/"+key+"/latest/"+to_convert_currency_code.lower()
+    print(url)
     response = requests.get(url)
 
     if response.status_code == 200:
