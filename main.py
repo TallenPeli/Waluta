@@ -38,8 +38,14 @@ def main(page):
                                 submit_button
                             ]
                         )
-                    ],
-                    alignment=ft.MainAxisAlignment.START, expand=1),
+                    ], 
+                alignment=ft.MainAxisAlignment.START, expand=1
+                ),
+
+                ft.FloatingActionButton(
+                    icon=ft.icons.SETTINGS,
+                    on_click=lambda e: change_page(2),
+                ),
             )
         elif index == 1:
             # Blank "Crypto" page
@@ -70,6 +76,16 @@ def main(page):
                     ],
                     alignment=ft.MainAxisAlignment.START, expand=1),
             )
+        elif index == 2:
+            page.controls.clear()
+            page.add(
+                ft.Row(
+                    [
+                        from_amount_text_box
+                    ]
+                )
+            )
+
         page.update()
     
     def copy_crypto_value(e):
