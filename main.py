@@ -4,13 +4,67 @@ import api_backend as api
 def main(page):
 
     def get_currency_conversion(e):
+        # Set the API key
         api.key = str(api_key_input_field.value)
-        converted_value.value=str(round(float(from_amount_text_box.value) * float(api.get_exchange(str(to_currency_dropdown.value), str(from_currency_dropdown.value))), 2))+" "+str(to_currency_dropdown.value)
+        
+        # Check if the API key has a value
+        if not api.key:
+            print("API key is missing. Please provide an API key.")
+            error_text.value = "API key is missing. Please provide an API key."
+            page.update()
+            return  # Exit the function if no API key is provided
+        
+        if not to_currency_dropdown.value:
+            print("No 'To' Currency Selected.")
+            error_text.value = "No 'To' Currency Selected."
+            page.update()
+            return
+
+        if not from_currency_dropdown.value:
+            print("No 'Of' Currency Selected.")
+            error_text.value = "No 'Of' Currency Selected."
+            page.update()
+            return
+        
+        # Perform the conversion if the API key is provided
+        try:
+            converted_value.value = str(
+                round(
+                    float(from_amount_text_box.value) * 
+                    float(api.get_exchange(str(to_currency_dropdown.value), str(from_currency_dropdown.value))), 2
+                )
+            ) + " " + str(to_currency_dropdown.value)
+            error_text.value = ""
+
+        except Exception as ex:
+            error_text.value = f"Error during conversion: {ex}"
+            print(f"Error during conversion: {ex}")
+        
+        # Update the UI
         page.update()
 
+
     def get_crypto_conversion(e):
-        converted_crypto_value.value=str(float(from_amount_text_box.value) * float(api.get_coin_exchange(str(to_currency_dropdown.value), str(from_crypto_dropdown.value))))+" "+str(to_currency_dropdown.value)
-        page.update()
+        if not to_currency_dropdown.value:
+            print("No 'To' Currency Selected.")
+            error_text.value = "No 'To' Currency Selected."
+            page.update()
+            return
+
+        if not from_crypto_dropdown.value:
+            print("No 'Of' Crypto Selected.")
+            error_text.value = "No 'Of' Crypto Selected."
+            page.update()
+            return
+        
+        try:
+            converted_crypto_value.value=str(float(from_amount_text_box.value) * float(api.get_coin_exchange(str(to_currency_dropdown.value), str(from_crypto_dropdown.value))))+" "+str(to_currency_dropdown.value)
+            error_text.value = ""
+            page.update()
+
+        except Exception as ex:
+            error_text.value = f"Error during conversion: {ex}"
+            print(f"Error during conversion: {ex}")
     
     def change_page(index):
         if index == 0:
@@ -36,9 +90,10 @@ def main(page):
                         to_currency_dropdown,
                         ft.Row(
                             [
-                                submit_button
+                                submit_button,
                             ]
-                        )
+                        ),
+                        error_text
                     ], 
                 alignment=ft.MainAxisAlignment.START, expand=1
                 ),
@@ -72,7 +127,8 @@ def main(page):
                             [
                                 submit_button_crypto
                             ]
-                        )
+                        ),
+                        error_text
                     ],
                     alignment=ft.MainAxisAlignment.START, expand=1),
             )
@@ -110,10 +166,16 @@ def main(page):
     submit_button = ft.ElevatedButton("Convert", on_click=get_currency_conversion, expand=1, height=40)
     submit_button_crypto = ft.ElevatedButton("Convert", on_click=get_crypto_conversion, expand=1, height=40)
 
+    error_text = ft.Text(
+        value="",
+        size=15,
+        color="red",
+    )
+
     copy_crypto_button = ft.ElevatedButton("Copy", expand=1, on_click=copy_crypto_value)
     copy_button = ft.ElevatedButton("Copy", expand=1, on_click=copy_value)
 
-    from_amount_text_box = ft.TextField(label="Amount", expand=1)
+    from_amount_text_box = ft.TextField(label="Amount", expand=1, value="1")
 
     api_key_input_field = ft.TextField(label="API key", expand=1)
 
