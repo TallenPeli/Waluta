@@ -154,7 +154,7 @@ def main(page):
     def on_nav_change(e):
         change_page(e.control.selected_index)
 
-    page.title = "Kantor"
+    page.title = "Waluta"
     page.navigation_bar = ft.NavigationBar(
         destinations=[
             ft.NavigationDestination(icon=ft.icons.WALLET, label="Money"),
