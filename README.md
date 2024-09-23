@@ -7,7 +7,7 @@ A beautiful flutter application written in Python
 **From Source :**
 
 ```
-cd /path/to/waluta
+cd /path/to/Waluta
 pip install -r requirements.txt
 flet run
 ```
@@ -34,7 +34,7 @@ https://app.exchangerate-api.com/dashboard
 ## Build from source
 
 ```
-cd /path/to/waluta
+cd /path/to/Waluta
 pip install -r requirements.txt
 flet pack
 ```
