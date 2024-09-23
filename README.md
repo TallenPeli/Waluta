@@ -1,4 +1,4 @@
-# A currency_exchange_api Flet app
+# A Currency Exchange tool written in Python Flet
 
 An example of a minimal Flet app.
 
