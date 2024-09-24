@@ -45,7 +45,7 @@ def main(page):
 
 
     def get_crypto_conversion(e):
-        if not to_currency_dropdown.value:
+        if not to_currency_dropdown_crypto.value:
             print("No 'To' Currency Selected.")
             error_text.value = "No 'To' Currency Selected."
             page.update()
@@ -58,7 +58,7 @@ def main(page):
             return
         
         try:
-            converted_crypto_value.value=str(float(from_amount_text_box.value) * float(api.get_coin_exchange(str(to_currency_dropdown.value), str(from_crypto_dropdown.value))))+" "+str(to_currency_dropdown.value)
+            converted_crypto_value.value=str(float(from_amount_text_box.value) * float(api.get_coin_exchange(str(to_currency_dropdown_crypto.value), str(from_crypto_dropdown.value))))+" "+str(to_currency_dropdown_crypto.value)
             error_text.value = ""
             page.update()
 
@@ -122,7 +122,7 @@ def main(page):
                                 from_crypto_dropdown
                             ]
                         ),
-                        to_currency_dropdown,                   
+                        to_currency_dropdown_crypto,                   
                         ft.Row(
                             [
                                 submit_button_crypto
@@ -574,6 +574,75 @@ def main(page):
             ft.dropdown.Option("ZAR"),
             ft.dropdown.Option("ZMW"),
             ft.dropdown.Option("ZWL"),
+        ],
+    )
+
+    to_currency_dropdown_crypto = ft.Dropdown(
+        label="To",
+        options=[
+            ft.dropdown.Option("BTC"),
+            ft.dropdown.Option("ETH"),
+            ft.dropdown.Option("LTC"),
+            ft.dropdown.Option("BCH"),
+            ft.dropdown.Option("BNB"),
+            ft.dropdown.Option("EOS"),
+            ft.dropdown.Option("XRP"),
+            ft.dropdown.Option("XLM"),
+            ft.dropdown.Option("LINK"),
+            ft.dropdown.Option("DOT"),
+            ft.dropdown.Option("YFI"),
+            ft.dropdown.Option("USD"),
+            ft.dropdown.Option("AED"),
+            ft.dropdown.Option("ARS"),
+            ft.dropdown.Option("AUD"),
+            ft.dropdown.Option("BDT"),
+            ft.dropdown.Option("BHD"),
+            ft.dropdown.Option("BMD"),
+            ft.dropdown.Option("BRL"),
+            ft.dropdown.Option("CAD"),
+            ft.dropdown.Option("CHF"),
+            ft.dropdown.Option("CLP"),
+            ft.dropdown.Option("CNY"),
+            ft.dropdown.Option("CZK"),
+            ft.dropdown.Option("DKK"),
+            ft.dropdown.Option("EUR"),
+            ft.dropdown.Option("GBP"),
+            ft.dropdown.Option("GEL"),
+            ft.dropdown.Option("HKD"),
+            ft.dropdown.Option("HUF"),
+            ft.dropdown.Option("IDR"),
+            ft.dropdown.Option("ILS"),
+            ft.dropdown.Option("INR"),
+            ft.dropdown.Option("JPY"),
+            ft.dropdown.Option("KRW"),
+            ft.dropdown.Option("KWD"),
+            ft.dropdown.Option("LKR"),
+            ft.dropdown.Option("MMK"),
+            ft.dropdown.Option("MXN"),
+            ft.dropdown.Option("MYR"),
+            ft.dropdown.Option("NGN"),
+            ft.dropdown.Option("NOK"),
+            ft.dropdown.Option("NZD"),
+            ft.dropdown.Option("PHP"),
+            ft.dropdown.Option("PKR"),
+            ft.dropdown.Option("PLN"),
+            ft.dropdown.Option("RUB"),
+            ft.dropdown.Option("SAR"),
+            ft.dropdown.Option("SEK"),
+            ft.dropdown.Option("SGD"),
+            ft.dropdown.Option("THB"),
+            ft.dropdown.Option("TRY"),
+            ft.dropdown.Option("TWD"),
+            ft.dropdown.Option("UAH"),
+            ft.dropdown.Option("VEF"),
+            ft.dropdown.Option("VND"),
+            ft.dropdown.Option("ZAR"),
+            ft.dropdown.Option("XDR"),
+            ft.dropdown.Option("XAG"),
+            ft.dropdown.Option("XAU"),
+            ft.dropdown.Option("BITS"),
+            ft.dropdown.Option("SATS"),
+
         ],
     )
 
